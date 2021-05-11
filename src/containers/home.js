@@ -51,13 +51,12 @@ export default function HomeContainer() {
   // });
 
   function FetchTrailers(film) {
-    console.log(film);
     async function FetchTrailer() {
       const params = new URLSearchParams({
         part: "snippet",
         maxResults: 1,
         key: "AIzaSyD1nYZXE8Un2vXDadAkMtfS7Kq38qrEH38",
-        q: `${film.name} Trailer`,
+        q: `${film.name ? film.name : film.original_title} Trailer`,
       });
       const trailer = await fetch(
         `https://www.googleapis.com/youtube/v3/search?${params}`
@@ -69,19 +68,19 @@ export default function HomeContainer() {
     }
     FetchTrailer().then((movies) => {
       CallPlayer(true);
-      SelectMovie(movies);
-      console.log(movies); // fetched movies
+      SelectMovie(movies); // fetched movies
     });
   }
-  const LogOut = (e) => {
+  async function LogOut(e) {
     e.preventDefault();
-    auth
+    await auth
       .signOut()
       .then((authuser) => {
         history.push("/");
+        window.location.reload();
       })
-      .catch((error) => console.log(error));
-  };
+      .catch((error) => {});
+  }
 
   return (
     <>
@@ -89,17 +88,17 @@ export default function HomeContainer() {
         <Banner.Logo src="/images/netflix-logo.png"></Banner.Logo>
         <Banner.SigninBtn onClick={LogOut}>Logout</Banner.SigninBtn>
       </Banner.Topbar>
-      {console.log(PlayerCalled)}
       {PlayerCalled === true && Object.entries(SelectedMovie).length > 0 && (
         <Player SelectedMovie={SelectedMovie} />
       )}
       <Home>
-        {/* {console.log(NetflixOriginals)} */}
         <Home.Banner movie={movie}>
           <Home.MovieName>
             {movie?.title || movie?.name || movie?.original_name}
           </Home.MovieName>
-          <Home.PlayButton>Play</Home.PlayButton>
+          <Home.PlayButton onClick={() => FetchTrailers(movie)}>
+            Play
+          </Home.PlayButton>
           <Home.Description>{movie?.overview}</Home.Description>
         </Home.Banner>
         <HomePageRowContainer
@@ -128,7 +127,6 @@ export default function HomeContainer() {
 }
 
 export function HomePageRowContainer(props) {
-  console.log(props);
   return (
     <>
       <Home.Row>{props.title}</Home.Row>

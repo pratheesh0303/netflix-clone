@@ -8,7 +8,6 @@ import BannerContainer from "./containers/banner";
 import LoginContainer from "./containers/login";
 import SignupContainer from "./containers/signup";
 import HomeContainer from "./containers/home";
-import RazorPay from "./utils/payments";
 import { login, logout, selectUser } from "./utils/reducer/user";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
@@ -21,7 +20,7 @@ export default function App() {
       if (userAuth) {
         dispatch(
           login({
-            uid: userAuth.id,
+            //uid: userAuth.id,
             email: userAuth.email,
           })
         );
@@ -30,18 +29,14 @@ export default function App() {
       }
     });
 
-    return Unsubscribe;
-  }, [dispatch]);
-
+    return () => {
+      Unsubscribe();
+    };
+  }, []);
   return (
     <Router>
-      {console.log(user)}
-
       {!user ? (
         <Switch>
-          <Route path="/payments">
-            <RazorPay />
-          </Route>
           <Route path="/login">
             <LoginContainer />
           </Route>

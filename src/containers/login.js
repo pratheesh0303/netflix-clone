@@ -15,7 +15,7 @@ export default function LoginContainer() {
       .then((authuser) => {
         history.push("/home");
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {});
   };
   const RedirectToSignup = () => {
     history.push("/");

@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import { FaWindowClose } from "react-icons/fa";
 import styles from "./player.module.css";
 export default function Player(props) {
-  console.log(props.SelectedMovie);
   const id = props.SelectedMovie.items[0].id.videoId;
   const [windowSize, setWindowSize] = useState({
     width: undefined,
@@ -12,13 +11,11 @@ export default function Player(props) {
   const [PlayerOpen, UpdatePlayerOpen] = useState(true);
 
   const PlayerClose = () => {
-    console.log("sss");
     UpdatePlayerOpen(false);
   };
   useEffect(() => {
     function handleResize() {
       // UpdatePlayerOpen(true);
-      console.log(window.innerHeight);
       // Set window width/height to state
       setWindowSize({
         width: window.innerWidth - 150,

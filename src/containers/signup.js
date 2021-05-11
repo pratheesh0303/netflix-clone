@@ -23,9 +23,7 @@ export default function SignupContainer(props) {
     e.preventDefault();
     auth
       .createUserWithEmailAndPassword(UserEmail, UserPassword)
-      .then((authuser) => {
-        console.log(authuser);
-      })
+      .then((authuser) => {})
       .catch((error) => alert(error.message));
   };
   return (

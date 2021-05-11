@@ -44,6 +44,7 @@ export const PlayButton = styled.button`
   background: #404c509e;
   border-radius: 10px;
   font-weight: 600;
+  cursor: pointer;
 `;
 
 export const RowContainer = styled.div`
