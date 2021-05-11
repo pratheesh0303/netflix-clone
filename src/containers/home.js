@@ -4,8 +4,11 @@ import {Home} from '../components';
 import requests from '../utils/requests';
 import {Banner} from '../components';
 import Player from '../utils/player';
+import {auth} from '../utils/Firebase/firebase';
+import {useHistory} from 'react-router-dom';
 
 export default function HomeContainer(){
+    const history = useHistory();
     const [movie, SetMovie]= useState([]);
     const [NetflixOriginals, SetNetflixOriginals]= useState([]);
     const [TopRated, SetTopRated]= useState([]);
@@ -63,12 +66,18 @@ export default function HomeContainer(){
             console.log(movies) // fetched movies
           });
     }
-        
+    const LogOut=(e)=>{
+        e.preventDefault();
+    auth.signOut().then((authuser)=>{
+        history.push('/');
+    }).catch((error)=> console.log(error))
+    }
     
     return (
         <>
         <Banner.Topbar>
             <Banner.Logo src="/images/netflix-logo.png"></Banner.Logo>
+            <Banner.SigninBtn onClick={LogOut}>Logout</Banner.SigninBtn>
         </Banner.Topbar>
         {console.log(PlayerCalled)}
         {PlayerCalled === true && Object.entries(SelectedMovie).length> 0 && <Player SelectedMovie={SelectedMovie}/>}
