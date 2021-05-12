@@ -3,11 +3,15 @@ import { useHistory } from "react-router-dom";
 import { auth } from "../utils/Firebase/firebase";
 import { Signup } from "../components";
 import { Banner } from "../components";
-
+// import { validator } from "../validations";
+import {validator} from "react-form-field-validation";
 export default function SignupContainer(props) {
   const history = useHistory();
-  const [UserEmail, UserEmailChange] = useState();
-  const [UserPassword, UserPasswordChange] = useState();
+  const [UserEmail, UserEmailChange] = useState(
+    history.location.state ? history.location.state.UserEmail : null
+  );
+  const [UserPassword, UserPasswordChange] = useState(null);
+  const [apiError, setError] = useState("");
 
   const UserSignin = () => {
     history.push("/login");
@@ -21,10 +25,27 @@ export default function SignupContainer(props) {
 
   const Register = (e) => {
     e.preventDefault();
-    auth
+   const validate= validator([
+      { fieldname: "email", value: UserEmail, rule: ["valid-email", "mandatory"] },
+      {
+        fieldname: "password",
+        value: UserPassword,
+        rule: ["min-6", "mandatory","max-10"],
+      },
+    ]);
+    if(!validate){
+          return;
+    } 
+      auth
       .createUserWithEmailAndPassword(UserEmail, UserPassword)
-      .then((authuser) => {})
-      .catch((error) => alert(error.message));
+      .then((authuser) => { history.push("/home");})
+      .catch((error) =>{
+        if(validate){
+          setError(error.message)
+        }
+      })
+    
+    
   };
   return (
     <Signup>
@@ -43,21 +64,25 @@ export default function SignupContainer(props) {
         <Signup.SignupForm>
           <Signup.Input
             name="email"
+            id="email"
             placeholder="Email Address"
             onChange={UserValueChange}
-            value={
-              history.location.state && history.location.state.UserEmail
-                ? history.location.state.UserEmail
-                : UserEmail
-            }
+            value={UserEmail}
           ></Signup.Input>
           <Signup.Input
+            id="password"
             name="password"
             placeholder="password"
             onChange={UserValueChange}
             value={UserPassword}
           ></Signup.Input>
-          <Signup.Button type="submit" onClick={Register}>
+          <div style={{ color: "red", fontSize: "15px" }}>{apiError}</div>
+          <Signup.Button
+            UserEmail
+            UserPassword
+            type="submit"
+            onClick={Register}
+          >
             Continue
           </Signup.Button>
         </Signup.SignupForm>
