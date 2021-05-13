@@ -76,6 +76,7 @@ export const validator = (props) => {
     }
     domElement[index].after(domNewElement[index]);
   });
+  
   if (Object.values(error)[0].length > 1) {
     return false;
   } else {
