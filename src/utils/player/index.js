@@ -11,6 +11,18 @@ export default function Player(props) {
   const [PlayerOpen, UpdatePlayerOpen] = useState(true);
 
   const PlayerClose = () => {
+    var iframe = document.querySelector( 'iframe');
+    var video = document.querySelector( 'video' );
+    if ( iframe !== null ) {
+        var iframeSrc = iframe.src;
+        iframe.src = iframeSrc;
+    }
+    
+    
+    console.log(video)
+    if(video){
+      video.pause();
+    }
     UpdatePlayerOpen(false);
   };
   useEffect(() => {
@@ -34,6 +46,7 @@ export default function Player(props) {
       <FaWindowClose onClick={PlayerClose} className={styles.closebtn} />
       <div className={styles.overlayContent}>
         <iframe
+          id="player"
           width={windowSize.width}
           height={windowSize.height}
           src={`https://www.youtube.com/embed/${id}`}
