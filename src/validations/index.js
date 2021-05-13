@@ -7,8 +7,8 @@ export const validator = (props) => {
     error = {};
     if (!item.value && item.rule.includes("mandatory")) {
       error[index] = `please enter ${item.fieldname}`;
-    }else {
-        error[index] = "";
+    } else {
+      error[index] = "";
     }
     if (
       (item.value &&
@@ -53,15 +53,15 @@ export const validator = (props) => {
       }
     }
     if (item.value && item.rule.includes("match-passwords")) {
-       const password =  document.getElementById("password");
-       const confirmPassword = document.getElementById("confirm-password");
-       if(password !== confirmPassword) {
-            error[index] = "Passwords does not match";
-       } else {
-           error[index]= "";
-       }
+      const password = document.getElementById("password");
+      const confirmPassword = document.getElementById("confirm-password");
+      if (password !== confirmPassword) {
+        error[index] = "Passwords does not match";
+      } else {
+        error[index] = "";
+      }
     }
-    
+
     domElement[index] = `id` + index;
     domNewElement[index] = "newNode" + index;
     domElement[index] = document.getElementById(item.fieldname);
