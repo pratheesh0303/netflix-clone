@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
+import {validator} from 'react-form-field-validation';
+// import {validator} from '../validations'
 import { auth } from "../utils/Firebase/firebase";
 import { Login } from "../components";
 import { Banner } from "../components";
@@ -10,6 +12,17 @@ export default function LoginContainer() {
 
   const userSignin = (e) => {
     e.preventDefault();
+    const validate= validator([
+      { fieldname: "email", value: email, rule: ["valid-email", "mandatory"] },
+      {
+        fieldname: "password",
+        value: password,
+        rule: ["mandatory"],
+      },
+    ]);
+    if(!validate){
+      return;
+    }   
     auth
       .signInWithEmailAndPassword(email, password)
       .then((authuser) => {
@@ -37,6 +50,7 @@ export default function LoginContainer() {
           <Login.Form>
             <Login.Title>Sign In</Login.Title>
             <Login.TextField
+              id="email"
               name="email"
               value={email}
               onChange={changeInput}
@@ -45,6 +59,7 @@ export default function LoginContainer() {
             ></Login.TextField>
             <Login.TextField
               name="password"
+              id="password"
               value={password}
               onChange={changeInput}
               type="password"

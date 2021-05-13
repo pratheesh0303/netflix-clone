@@ -7,6 +7,8 @@ export const validator = (props) => {
     error = {};
     if (!item.value && item.rule.includes("mandatory")) {
       error[index] = `please enter ${item.fieldname}`;
+    }else {
+        error[index] = "";
     }
     if (
       (item.value &&
@@ -68,7 +70,7 @@ export const validator = (props) => {
     domNewElement[index].innerHTML = error[index];
     domNewElement[index].style.color = "red";
     domNewElement[index].style.marginTop = "2px";
-    domNewElement[index].style.marginBottom = "2px";
+    domNewElement[index].style.marginBottom = "8px";
     if (document.getElementById(`error-${index}`)) {
       document.getElementById(`error-${index}`).remove();
     }

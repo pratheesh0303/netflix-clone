@@ -17,7 +17,7 @@ const validate= validator([
       },
     ]);
 
-### fieldname: which field you need to validate
+### fieldname: which field you need to validate (you need to add the same value provided here as id in the form field)
 ### value: value of that particular field (state variable)
 ### rule: rules need to be added to this key
 
