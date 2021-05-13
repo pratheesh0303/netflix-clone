@@ -2,7 +2,7 @@
   "name": "netflix",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://PratheeshTechy/github.io/netflix-clone",
+  "homepage": "http://pratheeshtechy/github.io/netflix-clone",
   "dependencies": {
     "@react-icons/all-files": "^4.1.0",
     "@reduxjs/toolkit": "^1.5.1",
