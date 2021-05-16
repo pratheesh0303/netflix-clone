@@ -5,6 +5,10 @@ export const LoginContainer = styled.div`
   width: 300px;
   padding: 40px 40px;
   background: rgba(0, 0, 0, 0.75);
+  @media (max-width: 600px) {
+    height: 350px;
+    width: 220px;
+  }
 `;
 
 export const Form = styled.form`

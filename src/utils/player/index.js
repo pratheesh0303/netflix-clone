@@ -11,15 +11,13 @@ export default function Player(props) {
   const [PlayerOpen, UpdatePlayerOpen] = useState(true);
 
   const PlayerClose = () => {
+    props.CallPlayer(false);
     var iframe = document.querySelector( 'iframe');
     var video = document.querySelector( 'video' );
     if ( iframe !== null ) {
         var iframeSrc = iframe.src;
         iframe.src = iframeSrc;
     }
-    
-    
-    console.log(video)
     if(video){
       video.pause();
     }
@@ -30,7 +28,7 @@ export default function Player(props) {
       // UpdatePlayerOpen(true);
       // Set window width/height to state
       setWindowSize({
-        width: window.innerWidth - 150,
+        width: window.innerWidth - 50,
         height: window.innerHeight - 150,
       });
     }
@@ -46,6 +44,7 @@ export default function Player(props) {
       <FaWindowClose onClick={PlayerClose} className={styles.closebtn} />
       <div className={styles.overlayContent}>
         <iframe
+          allowFullScreen
           id="player"
           width={windowSize.width}
           height={windowSize.height}

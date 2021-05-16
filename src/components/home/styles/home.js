@@ -22,6 +22,9 @@ export const Banner = styled.div`
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  @media (max-width: 600px) {
+    padding: 70px 40px;
+  }
 `;
 
 export const MovieName = styled.h1`
@@ -30,7 +33,7 @@ export const MovieName = styled.h1`
 `;
 
 export const Description = styled.p`
-  width: 50%;
+  width: 80%;
   color: #ffffff;
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: #c3c3c3;
@@ -67,6 +70,9 @@ export const Poster = styled.img`
   &:hover {
     transform: scale(1.08);
     opacity: 1;
+  }
+  @media (max-width: 600px) {
+    max-height: 150px;
   }
 `;
 

@@ -69,7 +69,7 @@ export const SigninBtn = styled.button`
 
   @media (max-width: 600px) {
     right: 11px;
-    top: 25px;
+    top: 34px;
     height: 28px;
     width: 92px;
     font-size: 0.875rem;

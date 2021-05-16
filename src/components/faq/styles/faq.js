@@ -11,4 +11,7 @@ export const FaqContainer = styled.div`
 export const Title = styled.h1`
   color: white;
   font-size: 30px;
+  @media (max-width: 600px) {
+    font-size: 23px;
+  }
 `;

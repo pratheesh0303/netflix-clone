@@ -63,7 +63,6 @@ export default function HomeContainer() {
       );
       const Trailer = await trailer.json();
       //await trailer.json();
-
       return Trailer;
     }
     FetchTrailer().then((movies) => {
@@ -89,7 +88,7 @@ export default function HomeContainer() {
         <Banner.SigninBtn onClick={LogOut}>Logout</Banner.SigninBtn>
       </Banner.Topbar>
       {PlayerCalled === true && Object.entries(SelectedMovie).length > 0 && (
-        <Player SelectedMovie={SelectedMovie} />
+        <Player SelectedMovie={SelectedMovie} CallPlayer={CallPlayer} />
       )}
       <Home>
         <Home.Banner movie={movie}>
@@ -99,7 +98,7 @@ export default function HomeContainer() {
           <Home.PlayButton onClick={() => FetchTrailers(movie)}>
             Play
           </Home.PlayButton>
-          <Home.Description>{movie?.overview}</Home.Description>
+          <Home.Description>{movie?.overview?.slice(1,60)+'...'}</Home.Description>
         </Home.Banner>
         <HomePageRowContainer
           FetchTrailers={FetchTrailers}
