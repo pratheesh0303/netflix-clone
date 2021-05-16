@@ -12,13 +12,13 @@ export default function Player(props) {
 
   const PlayerClose = () => {
     props.CallPlayer(false);
-    var iframe = document.querySelector( 'iframe');
-    var video = document.querySelector( 'video' );
-    if ( iframe !== null ) {
-        var iframeSrc = iframe.src;
-        iframe.src = iframeSrc;
+    var iframe = document.querySelector("iframe");
+    var video = document.querySelector("video");
+    if (iframe !== null) {
+      var iframeSrc = iframe.src;
+      iframe.src = iframeSrc;
     }
-    if(video){
+    if (video) {
       video.pause();
     }
     UpdatePlayerOpen(false);

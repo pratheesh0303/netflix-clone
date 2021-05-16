@@ -55,7 +55,8 @@ export default function HomeContainer() {
       const params = new URLSearchParams({
         part: "snippet",
         maxResults: 1,
-        key: "AIzaSyD1nYZXE8Un2vXDadAkMtfS7Kq38qrEH38",
+        //key: "AIzaSyD1nYZXE8Un2vXDadAkMtfS7Kq38qrEH38",
+        key: process.env.REACT_APP_GOOGLE_API_KEY,
         q: `${film.name ? film.name : film.original_title} Trailer`,
       });
       const trailer = await fetch(
@@ -98,7 +99,9 @@ export default function HomeContainer() {
           <Home.PlayButton onClick={() => FetchTrailers(movie)}>
             Play
           </Home.PlayButton>
-          <Home.Description>{movie?.overview?.slice(1,60)+'...'}</Home.Description>
+          <Home.Description>
+            {movie?.overview?.slice(1, 60) + "..."}
+          </Home.Description>
         </Home.Banner>
         <HomePageRowContainer
           FetchTrailers={FetchTrailers}
@@ -133,6 +136,7 @@ export function HomePageRowContainer(props) {
         {props.data.map((film) => {
           return (
             <Home.Poster
+              key={film.id}
               onClick={() => props.FetchTrailers(film)}
               src={`https://image.tmdb.org/t/p/original/${film?.poster_path}`}
             />

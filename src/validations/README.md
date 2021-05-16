@@ -1,27 +1,32 @@
 # Getting Started with Create React App
+
 # import package like this
+
 import {validator} from "react-form-field-validation";
 
-# After Installing the package add this function inside your form submit function 
+# After Installing the package add this function inside your form submit function
 
 const validate= validator();
 
-##  add an object to the  validator function like this.
+## add an object to the validator function like this.
 
 const validate= validator([
-      { fieldname: "email", value: UserEmail, rule: ["valid-email", "mandatory"] },
-      {
-        fieldname: "password",
-        value: UserPassword,
-        rule: ["min-6", "mandatory","max-10"],
-      },
-    ]);
+{ fieldname: "email", value: UserEmail, rule: ["valid-email", "mandatory"] },
+{
+fieldname: "password",
+value: UserPassword,
+rule: ["min-6", "mandatory","max-10"],
+},
+]);
 
 ### fieldname: which field you need to validate (you need to add the same value provided here as id in the form field)
+
 ### value: value of that particular field (state variable)
+
 ### rule: rules need to be added to this key
 
-### rule list: 
+### rule list:
+
     ["min-6"]-> field should have atleast 6 characters
     ["max-10"]-> field can only have maximum of 10 characters
     ["mandatory"]-> field is a mandatory field

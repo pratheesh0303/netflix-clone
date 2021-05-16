@@ -4,7 +4,7 @@ import { auth } from "../utils/Firebase/firebase";
 import { Signup } from "../components";
 import { Banner } from "../components";
 // import { validator } from "../validations";
-import {validator} from "react-form-field-validation";
+import { validator } from "react-form-field-validation";
 export default function SignupContainer(props) {
   const history = useHistory();
   const [UserEmail, UserEmailChange] = useState(
@@ -25,27 +25,31 @@ export default function SignupContainer(props) {
 
   const Register = (e) => {
     e.preventDefault();
-   const validate= validator([
-      { fieldname: "email", value: UserEmail, rule: ["valid-email", "mandatory"] },
+    const validate = validator([
+      {
+        fieldname: "email",
+        value: UserEmail,
+        rule: ["valid-email", "mandatory"],
+      },
       {
         fieldname: "password",
         value: UserPassword,
-        rule: ["min-6", "mandatory","max-10"],
+        rule: ["min-6", "mandatory", "max-10"],
       },
     ]);
-    if(!validate){
-          return;
-    } 
-      auth
+    if (!validate) {
+      return;
+    }
+    auth
       .createUserWithEmailAndPassword(UserEmail, UserPassword)
-      .then((authuser) => { history.push("/home");})
-      .catch((error) =>{
-        if(validate){
-          setError(error.message)
-        }
+      .then((authuser) => {
+        history.push("/home");
       })
-    
-    
+      .catch((error) => {
+        if (validate) {
+          setError(error.message);
+        }
+      });
   };
   return (
     <Signup>

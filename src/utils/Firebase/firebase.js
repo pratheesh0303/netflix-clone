@@ -1,7 +1,7 @@
 import firebase from "firebase";
 
 var firebaseConfig = {
-  apiKey: "AIzaSyAjbzfjDVkbitWkWoM5feKCIpSkIvavFd8",
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
   authDomain: "pratheesh-s-netflix.firebaseapp.com",
   projectId: "pratheesh-s-netflix",
   storageBucket: "pratheesh-s-netflix.appspot.com",
