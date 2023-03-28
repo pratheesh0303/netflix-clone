@@ -5,6 +5,11 @@ import { Signup } from "../components";
 import { Banner } from "../components";
 // import { validator } from "../validations";
 import { validator } from "react-form-field-validation";
+import styled from "styled-components";
+
+const  Error = styled.div` 
+  color: red;
+`
 export default function SignupContainer(props) {
   const history = useHistory();
   const [UserEmail, UserEmailChange] = useState(
@@ -12,7 +17,7 @@ export default function SignupContainer(props) {
   );
   const [UserPassword, UserPasswordChange] = useState(null);
   const [apiError, setError] = useState("");
-
+  
   const UserSignin = () => {
     history.push("/login");
   };
@@ -34,7 +39,7 @@ export default function SignupContainer(props) {
       {
         fieldname: "password",
         value: UserPassword,
-        rule: ["min-6", "mandatory", "max-10"],
+        rule: ["min-6", "mandatory", "max-20"],
       },
     ]);
     if (!validate) {
@@ -65,6 +70,7 @@ export default function SignupContainer(props) {
         <Signup.Description>
           Just a few more steps and you're done! We hate paperwork, too.
         </Signup.Description>
+        <Error>{apiError}</Error>
         <Signup.SignupForm>
           <Signup.Input
             name="email"
@@ -75,12 +81,12 @@ export default function SignupContainer(props) {
           ></Signup.Input>
           <Signup.Input
             id="password"
+            type="password"
             name="password"
             placeholder="password"
             onChange={UserValueChange}
             value={UserPassword}
           ></Signup.Input>
-          <div style={{ color: "red", fontSize: "15px" }}>{apiError}</div>
           <Signup.Button
             UserEmail
             UserPassword

@@ -63,6 +63,7 @@ export const Row = styled.h1`
 
 export const Poster = styled.img`
   max-height: 250px;
+  cursor: pointer;
   object-fit: contain;
   margin-right: 10px;
   width: 100%;

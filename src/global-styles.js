@@ -11,5 +11,6 @@ html, body {
 }
 button {
     border: 1px solid transparent;
+    cursor: pointer;
 }
 `;

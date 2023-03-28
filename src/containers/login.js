@@ -5,10 +5,16 @@ import { validator } from "react-form-field-validation";
 import { auth } from "../utils/Firebase/firebase";
 import { Login } from "../components";
 import { Banner } from "../components";
+import styled from "styled-components";
+
+const Error = styled.span `
+  color: red;
+`;
 export default function LoginContainer() {
   const history = useHistory();
   const [password, SetPassword] = useState("");
   const [email, SetEmail] = useState("");
+  const [error, setError] = useState("")
 
   const userSignin = (e) => {
     e.preventDefault();
@@ -28,7 +34,8 @@ export default function LoginContainer() {
       .then((authuser) => {
         history.push("/home");
       })
-      .catch((error) => {});
+      .catch((error) => {
+         setError(error.message)});
   };
   const RedirectToSignup = () => {
     history.push("/");
@@ -49,6 +56,7 @@ export default function LoginContainer() {
         <Login>
           <Login.Form>
             <Login.Title>Sign In</Login.Title>
+            <Error>{error}</Error>
             <Login.TextField
               id="email"
               name="email"

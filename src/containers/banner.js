@@ -20,10 +20,10 @@ export default function BannerContainer() {
     <Banner>
       <Banner.Topbar>
         <Banner.Logo src="images/netflix-logo.png" />
-        <Banner.LanguageDropdown>
+        {/* <Banner.LanguageDropdown>
           <option value="english">English</option>
           <option value="hindi">Hindi</option>
-        </Banner.LanguageDropdown>
+        </Banner.LanguageDropdown> */}
         <Banner.SigninBtn onClick={SigninClick}>Sign In</Banner.SigninBtn>
       </Banner.Topbar>
       <Banner.TextConatiner>

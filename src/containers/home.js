@@ -41,21 +41,13 @@ export default function HomeContainer() {
     FetchData();
   }, []);
 
-  // const youtubeInstance =  axios.create({
-  //     baseURL: "https://googleapis.com/youtube/v3",
-  //     params:{
-  //         part:'snippet',
-  //         maxResults:1,
-  //         key: 'AIzaSyD1nYZXE8Un2vXDadAkMtfS7Kq38qrEH38'
-  //     }
-  // });
 
   function FetchTrailers(film) {
+    console.log(film)
     async function FetchTrailer() {
       const params = new URLSearchParams({
         part: "snippet",
         maxResults: 1,
-        //key: "AIzaSyD1nYZXE8Un2vXDadAkMtfS7Kq38qrEH38",
         key: process.env.REACT_APP_GOOGLE_API_KEY,
         q: `${film.name ? film.name : film.original_title} Trailer`,
       });
